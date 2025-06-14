@@ -12,7 +12,7 @@ import inquirer from "inquirer";
  *
  * @returns {Promise<void>} A promise that resolves when all questions have been answered.
  */
-export const askReactAppQuestions = async (): Promise<void> => {
+export const askReactAppQuestions = async (): Promise<Record<string, string>> => {
   const answers: any = {};
 
   // App name

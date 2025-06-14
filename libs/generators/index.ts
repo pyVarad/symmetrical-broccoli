@@ -1,1 +1,1 @@
-export { helloGenerator } from "./react/index.js";
+export { createApp as reactAppGen } from "./react/index.js";

@@ -1,3 +1,5 @@
+import { createReactApp } from './create/index.js';
+
 // To do
 // Run create react vite and generate the project structure
 // Cleanup files which we feel should not be there
@@ -14,6 +16,6 @@
 // Include support for linting using biome.js
 // Add docker files for containerization
 // Include prism mocks to emulate the backend services
-export const helloGenerator = (): string => {
-  return "Hello from the generator!";
+export const createApp = (appTargetDirectory: string, name: string): void => {
+  createReactApp(appTargetDirectory, name);
 };

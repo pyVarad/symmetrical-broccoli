@@ -10,10 +10,15 @@
     "types": ["node"],
     "paths": {
       "@app-gen-cli/shared": ["../../libs/shared/index.ts"]
-    }
+    },
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   },
   "include": ["src/**/*.ts"],
   "references": [
+    {
+      "path": "../../libs/generators/tsconfig.lib.json"
+    },
     {
       "path": "../../libs/shared/tsconfig.lib.json"
     }

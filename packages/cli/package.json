@@ -1,23 +1,40 @@
 {
   "name": "@app-gen-cli/cli",
   "version": "0.0.1",
-  "private": true,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/app-gen-cli.bundle.mjs",
+  "module": "./dist/app-gen-cli.bundle.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/app-gen-cli.bundle.mjs",
+      "default": "./dist/app-gen-cli.bundle.mjs"
     }
+  },
+  "bin": {
+    "app-gen-cli": "./dist/app-gen-cli.bundle.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://your-artifactory-url/artifactory/api/npm/npm-repo/"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
   },
   "dependencies": {
     "ts-node": "^10.9.2",
     "tslib": "^2.3.0",
     "@app-gen-cli/shared": "0.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.0.0",
+    "rollup-plugin-copy": "^3.5.0"
   }
 }
