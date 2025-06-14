@@ -8,9 +8,9 @@ export const createReactApp = (appTargetDirectory: string, name: string) => {
     otherArgs: [],
   };
 
-if (fsUtils.isPathPresent(appTargetDirectory)) {
+  if (fsUtils.isPathPresent(appTargetDirectory)) {
     fsUtils.changeDirectory(appTargetDirectory);
-}
+  }
 
   const cmdArgs = [args.name, "--template", args.template, ...args.otherArgs];
   ipc.ipcPipeEventSync(`npx create-vite@latest`, cmdArgs, "inherit");

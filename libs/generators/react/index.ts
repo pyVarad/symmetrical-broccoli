@@ -1,4 +1,4 @@
-import { createReactApp } from './create/index.js';
+import { createReactApp } from "./create/index.js";
 
 // To do
 // Run create react vite and generate the project structure
