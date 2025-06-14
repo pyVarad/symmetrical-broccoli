@@ -3,11 +3,11 @@
 	"compileOnSave": false,
 	"files": [],
 	"references": [
-		{
-			"path": "./libs/shared"
-		},
-		{
-			"path": "./packages"
-		}
-	]
+    {
+      "path": "./libs/shared"
+    },
+    {
+      "path": "./packages/cli"
+    }
+  ]
 }

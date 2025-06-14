@@ -1,5 +1,5 @@
 {
-	"name": "@app-gen-cli/packages",
+	"name": "@app-gen-cli/cli",
 	"version": "0.0.1",
 	"private": true,
 	"type": "module",
@@ -16,6 +16,8 @@
 		}
 	},
 	"dependencies": {
-		"tslib": "^2.3.0"
+		"ts-node": "^10.9.2",
+		"tslib": "^2.3.0",
+		"@app-gen-cli/shared": "0.0.1"
 	}
 }

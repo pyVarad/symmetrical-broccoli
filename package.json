@@ -4,7 +4,9 @@
 	"license": "MIT",
 	"private": true,
 	"scripts": {
-		"format": "biome format --write ."
+		"format": "biome format --write .",
+		"build": "nx build shared && nx build cli",
+		"dev": "nx build shared && node packages/cli/dist/index.js"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
@@ -14,9 +16,13 @@
 		"@swc/core": "~1.5.7",
 		"@swc/helpers": "~0.5.11",
 		"@types/node": "18.16.9",
+		"inquirer": "^12.6.3",
 		"nx": "21.2.0",
 		"tslib": "^2.3.0",
 		"typescript": "~5.8.2"
 	},
-	"workspaces": ["packages/*", "libs/*", "packages"]
+	"workspaces": [
+		"packages/*",
+		"libs/*"
+	]
 }

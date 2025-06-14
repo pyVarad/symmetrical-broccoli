@@ -7,8 +7,15 @@
 		"tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
 		"emitDeclarationOnly": false,
 		"forceConsistentCasingInFileNames": true,
-		"types": ["node"]
+		"types": ["node"],
+		"paths": {
+			"@app-gen-cli/shared": ["../../libs/shared/index.ts"]
+		}
 	},
-	"include": ["**/*.ts"],
-	"references": []
+	"include": ["src/**/*.ts"],
+	"references": [
+		{
+			"path": "../../libs/shared/tsconfig.lib.json"
+		}
+	]
 }
