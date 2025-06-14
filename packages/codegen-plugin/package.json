@@ -12,14 +12,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "codegen-plugin.helloWorld",
-        "title": "Hello World"
+        "command": "codegen-plugin.reactgenerator",
+        "title": "React App Generator"
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
+    "prepackage": "npm run compile",
+    "package": "vsce package",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
@@ -36,5 +38,9 @@
     "@vscode/test-electron": "^2.4.1",
     "eslint": "^9.23.0",
     "typescript": "^5.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/your-repo.git"
   }
 }

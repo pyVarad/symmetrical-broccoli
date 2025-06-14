@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
   const disposable = vscode.commands.registerCommand(
-    "codegen-plugin.helloWorld",
+    "codegen-plugin.reactgenerator",
     () => {
       // Create and show a new webview panel
       const panel = vscode.window.createWebviewPanel(
