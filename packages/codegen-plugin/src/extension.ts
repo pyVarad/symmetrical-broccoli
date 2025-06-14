@@ -3,7 +3,9 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
-import { spawnSync } from "child_process";
+
+// Import reactAppGen dynamically
+const { reactAppGen } = require("@app-gen-cli/generators");
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -38,31 +40,26 @@ export function activate(context: vscode.ExtensionContext) {
         async (message) => {
           if (message.command === "submit") {
             try {
-              // Get workspace folder if any
-              let targetDir = ".";
-              if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
-                targetDir = vscode.workspace.workspaceFolders[0].uri.fsPath;
-              }
+              // Use fixed directory path
+              const targetDir = "/Users/varad/code/testing/react-apps";
               
-              // Allow user to choose location
-              const options: vscode.OpenDialogOptions = {
-                canSelectMany: false,
-                canSelectFiles: false,
-                canSelectFolders: true,
-                openLabel: 'Select location for React app'
-              };
-              
-              const fileUri = await vscode.window.showOpenDialog(options);
-              if (fileUri && fileUri[0]) {
-                targetDir = fileUri[0].fsPath;
+              // Ensure the directory exists
+              if (!fs.existsSync(targetDir)) {
+                fs.mkdirSync(targetDir, { recursive: true });
               }
               
               vscode.window.showInformationMessage(
                 `Creating React app "${message.name}" at location: ${targetDir}`
               );
               
-              // Create the React app using the direct implementation of reactAppGen
-              createReactApp(targetDir, message.name, message.type);
+              // Create the React app using reactAppGen
+              reactAppGen(targetDir, message.name);
+              
+              // Show success message
+              vscode.window.showInformationMessage(`Successfully created React app: ${message.name}`);
+              
+              // Open the created project folder
+              openProjectFolder(targetDir, message.name);
             } catch (error) {
               vscode.window.showErrorMessage(`Failed to create app: ${error.message}`);
             }
@@ -78,44 +75,18 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 /**
- * Creates a React application by executing the 'create-vite' CLI tool
- * @param appTargetDirectory - The directory where the app will be created
+ * Helper function to open a newly created project in VS Code
+ * @param appTargetDirectory - The directory where the app was created
  * @param name - The name of the application
- * @param template - The template to use (defaults to 'react-ts')
  */
-function createReactApp(appTargetDirectory: string, name: string, template: string = 'react-ts'): void {
-  // Check if the target directory exists
-  if (!fs.existsSync(appTargetDirectory)) {
-    throw new Error(`Target directory does not exist: ${appTargetDirectory}`);
-  }
-  
-  // Set up the command arguments
-  const cmdArgs = [name, '--template', template];
-  
-  // Show progress notification
-  vscode.window.showInformationMessage(`Running: npx create-vite@latest ${cmdArgs.join(' ')}`);
-  
+function openProjectFolder(appTargetDirectory: string, name: string): void {
   try {
-    // Execute the command using Node.js child_process
-    const result = spawnSync('npx', ['create-vite@latest', ...cmdArgs], {
-      cwd: appTargetDirectory,
-      stdio: 'pipe',
-      shell: true,
-      encoding: 'utf-8'
-    });
-    
-    if (result.status !== 0) {
-      throw new Error(`Command failed with exit code ${result.status}: ${result.stderr || result.error?.message}`);
-    }
-    
-    vscode.window.showInformationMessage(`Successfully created React app: ${name}`);
-    
-    // Open the folder in VS Code
     const projectPath = path.join(appTargetDirectory, name);
-    vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(projectPath));
+    if (fs.existsSync(projectPath)) {
+      vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(projectPath));
+    }
   } catch (error) {
-    vscode.window.showErrorMessage(`Failed to create React app: ${error.message}`);
-    throw error;
+    vscode.window.showErrorMessage(`Failed to open project folder: ${error.message}`);
   }
 }
 
