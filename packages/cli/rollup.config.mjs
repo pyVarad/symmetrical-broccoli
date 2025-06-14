@@ -6,6 +6,18 @@ import terser from '@rollup/plugin-terser';
 import copy from 'rollup-plugin-copy';
 import { builtinModules } from 'module';
 
+function shebang() {
+  return {
+    name: 'shebang',
+    renderChunk(code) {
+      return {
+        code: `#!/usr/bin/env node\n${code}`,
+        map: null
+      };
+    }
+  };
+}
+
 export default {
   input: 'src/index.ts',
   output: [
@@ -16,6 +28,7 @@ export default {
     }
   ],
   plugins: [
+    shebang(),
     resolve({ preferBuiltins: true }),
     commonjs(),
     json(),

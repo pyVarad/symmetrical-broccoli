@@ -15,7 +15,7 @@
     }
   },
   "bin": {
-    "app-gen-cli": "./dist/app-gen-cli.bundle.mjs"
+    "app-gen-cli": "./app-gen-cli.bundle.mjs"
   },
   "publishConfig": {
     "registry": "https://your-artifactory-url/artifactory/api/npm/npm-repo/"
