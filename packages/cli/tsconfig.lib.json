@@ -1,21 +1,21 @@
 {
-	"extends": "../../tsconfig.base.json",
-	"compilerOptions": {
-		"baseUrl": ".",
-		"rootDir": ".",
-		"outDir": "dist",
-		"tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
-		"emitDeclarationOnly": false,
-		"forceConsistentCasingInFileNames": true,
-		"types": ["node"],
-		"paths": {
-			"@app-gen-cli/shared": ["../../libs/shared/index.ts"]
-		}
-	},
-	"include": ["src/**/*.ts"],
-	"references": [
-		{
-			"path": "../../libs/shared/tsconfig.lib.json"
-		}
-	]
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "emitDeclarationOnly": false,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "paths": {
+      "@app-gen-cli/shared": ["../../libs/shared/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "references": [
+    {
+      "path": "../../libs/shared/tsconfig.lib.json"
+    }
+  ]
 }

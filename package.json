@@ -1,28 +1,30 @@
 {
-	"name": "@app-gen-cli/source",
-	"version": "0.0.0",
-	"license": "MIT",
-	"private": true,
-	"scripts": {
-		"format": "biome format --write .",
-		"build": "nx build shared && nx build cli && nx build generators",
-		"dev": "nx build shared && node packages/cli/dist/index.js"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@nx/js": "21.2.0",
-		"@nx/plugin": "^21.2.0",
-		"@swc-node/register": "~1.9.1",
-		"@swc/core": "~1.5.7",
-		"@swc/helpers": "~0.5.11",
-		"@types/node": "18.16.9",
-		"inquirer": "^12.6.3",
-		"nx": "21.2.0",
-		"tslib": "^2.3.0",
-		"typescript": "~5.8.2"
-	},
-	"workspaces": [
-		"packages/*",
-		"libs/*"
-	]
+  "name": "@app-gen-cli/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "format": "biome format --write .",
+    "build": "nx build shared && nx build cli && nx build generators",
+    "dev": "nx build shared && node packages/cli/dist/index.js"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@nx/js": "21.2.0",
+    "@nx/plugin": "^21.2.0",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "18.16.9",
+    "inquirer": "^12.6.3",
+    "nx": "21.2.0",
+    "tslib": "^2.3.0",
+    "typescript": "~5.8.2"
+  },
+  "workspaces": ["packages/*", "libs/*"],
+  "dependencies": {
+    "fs-extra": "^11.3.0",
+    "handlebars": "^4.7.8"
+  }
 }

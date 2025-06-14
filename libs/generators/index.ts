@@ -1,2 +1,1 @@
-const { helloGenerator } = require("./react");
-module.exports = { helloGenerator };
+export { helloGenerator } from "./react/index.js";
